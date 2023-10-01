@@ -10,6 +10,11 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * @group Todos CRUD
+ *
+ * @Authenticated
+ */
 class TodoController extends Controller
 {
     public function index(Request $request)

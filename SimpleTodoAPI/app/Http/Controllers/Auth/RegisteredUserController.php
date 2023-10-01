@@ -17,6 +17,8 @@ class RegisteredUserController extends Controller
      * Handle an incoming registration request.
      *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @group Auth endpoints
      */
     public function store(Request $request): Response
     {
