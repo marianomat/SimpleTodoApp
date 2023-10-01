@@ -7,9 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @mixin \App\Models\Todo
- *  
+ *
  * */
-
 class TodoResource extends JsonResource
 {
     /**

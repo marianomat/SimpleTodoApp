@@ -21,7 +21,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                // Since its the web guard, it tries to redirect to the home page
+                // which is not what we want for an API
+
+                return response()->noContent();
+
+                //return redirect(RouteServiceProvider::HOME);
             }
         }
 

@@ -95,6 +95,21 @@ class TodoControllerTest extends TestCase
         ]);
     }
 
+    public function test_user_cannot_create_multiple_todos_at_once()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'web');
+        $response = $this->postJson('/api/v1/todos', [
+            [
+                'description' => 'Test User Can Create Todo',
+            ],
+            [
+                'description' => 'Test User Can Create Todo',
+            ],
+        ]);
+        $response->assertStatus(422);
+    }
+
     public function test_user_can_update_their_own_todo()
     {
         $user = User::factory()->create();
