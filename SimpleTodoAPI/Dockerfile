@@ -1,65 +1,46 @@
-FROM php:8-fpm
+FROM php:8-apache
 
-# Set working directory
-WORKDIR /var/www
+# Instala los paquetes necesarios para Laravel
+RUN apt-get update && apt-get install -y git zip unzip
 
-# Add docker php ext repo
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-# Install php extensions
-RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions mbstring pdo_mysql zip exif pcntl gd memcached
-
-RUN docker-php-ext-install mysqli pdo && docker-php-ext-enable mysqli
-
-
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    unzip \
     git \
     curl \
-    lua-zlib-dev \
-    libmemcached-dev \
-    nginx
-
-# Install supervisor
-RUN apt-get install -y supervisor
-
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Copy code to /var/www
-COPY --chown=www:www-data . /var/www
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# add root to www group
-RUN chmod -R ug+w /var/www/storage
+# Copy existing application directory contents
+COPY . /var/www
 
-# Copy nginx/php/supervisor configs
-RUN cp docker/supervisor.conf /etc/supervisord.conf
-RUN cp docker/php.ini /usr/local/etc/php/conf.d/app.ini
-RUN cp docker/nginx.conf /etc/nginx/sites-enabled/default
+# Cambia al directorio de Laravel
+WORKDIR /var/www
 
-# PHP Error Log Files
-RUN mkdir /var/log/php
-RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
+# Instala las dependencias de Laravel
+RUN composer install
 
-# Deployment steps
-RUN composer install --optimize-autoloader --no-dev
-RUN chmod +x /var/www/docker/run.sh
+# Configura el archivo .env
+RUN cp .env.example .env
 
-EXPOSE 8000
-ENTRYPOINT ["/var/www/docker/run.sh"]
+# Genera la clave de aplicación
+RUN php artisan key:generate
+
+# Clear cache
+RUN php artisan cache:clear 
+RUN php artisan config:clear
+RUN php artisan optimize
+
+# Inicia el servidor de Laravel
+CMD ["php","artisan","serve","--host=0.0.0.0"]

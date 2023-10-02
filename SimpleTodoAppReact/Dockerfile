@@ -1,16 +1,8 @@
-# Step 1: Build the application
-FROM node:16 AS builder
+# Step 1: Set up the development environment
+FROM node:alpine
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
-
+COPY package.json .
+RUN yarn
+# copy all files
 COPY . .
-RUN npm run build
-
-# Step 2: Set up the production environment
-FROM nginx:stable-alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 5173
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["yarn", "dev", "--debug"]

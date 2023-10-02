@@ -11,7 +11,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:eSV1E7QqSkS7Q/Ee/1rhJ59s0RclMO5yA6MXjUNm/v8=',
+    'key' => 'base64:skhZlxI1qbvO8rKpYRZggqWduMoqY2abpQSXsb6SWf4=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -198,8 +198,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/var/www/html/storage/framework/cache/data',
-        'lock_path' => '/var/www/html/storage/framework/cache/data',
+        'path' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\framework/cache/data',
+        'lock_path' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -289,11 +289,11 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'simpletodoapp-db',
         'port' => '3306',
         'database' => 'SimpleTodoApp',
-        'username' => 'example_user',
-        'password' => 'example_password',
+        'username' => 'user',
+        'password' => 'password',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -309,11 +309,11 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'simpletodoapp-db',
         'port' => '3306',
         'database' => 'SimpleTodoApp',
-        'username' => 'example_user',
-        'password' => 'example_password',
+        'username' => 'user',
+        'password' => 'password',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -324,11 +324,11 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'simpletodoapp-db',
         'port' => '3306',
         'database' => 'SimpleTodoApp',
-        'username' => 'example_user',
-        'password' => 'example_password',
+        'username' => 'user',
+        'password' => 'password',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -371,13 +371,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/storage/app',
+        'root' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/storage/app/public',
+        'root' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\app/public',
         'url' => 'http://localhost:8000/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -397,7 +397,7 @@
     ),
     'links' => 
     array (
-      '/var/www/html/public/storage' => '/var/www/html/storage/app/public',
+      'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\public\\storage' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -436,14 +436,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/var/www/html/storage/logs/laravel.log',
+        'path' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/var/www/html/storage/logs/laravel.log',
+        'path' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -508,7 +508,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/var/www/html/storage/logs/laravel.log',
+        'path' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -575,7 +575,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/var/www/html/resources/views/vendor/mail',
+        0 => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -881,7 +881,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/var/www/html/storage/framework/sessions',
+    'files' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -901,9 +901,9 @@ You can switch the language used with the tabs at the top right (or from the nav
   array (
     'paths' => 
     array (
-      0 => '/var/www/html/resources/views',
+      0 => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\resources\\views',
     ),
-    'compiled' => '/var/www/html/storage/framework/views',
+    'compiled' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -980,7 +980,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => '/var/www/html',
+    'remote_sites_path' => 'C:\\Users\\PC\\Desktop\\repos\\SimpleTodoApp\\SimpleTodoAPI',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',

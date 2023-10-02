@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+    simpletodoapp-frontend:
+        container_name: simpletodoapp-frontend
+        build:
+            context: ./SimpleTodoAppReact
+            dockerfile: Dockerfile
+        ports:
+            - "5173:5173" # Puerto de desarrollo de React
+
+    simpletodoapp-backend:
+        build:
+            context: ./SimpleTodoAPI
+            dockerfile: Dockerfile
+        container_name: simpletodoapp-backend
+        restart: unless-stopped
+        working_dir: /var/www/
+        networks:
+            - simpletodoappnetwork
+        ports:
+            - "8000:8000"
+
+    db:
+        image: mysql:8.0
+        container_name: simpletodoapp-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: SimpleTodoApp
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_PASSWORD: password
+            MYSQL_USER: user
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+        networks:
+            - simpletodoappnetwork
+
+networks:
+    simpletodoappnetwork:
+        driver: bridge
