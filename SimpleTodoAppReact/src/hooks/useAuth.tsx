@@ -62,11 +62,12 @@ export function useAuth() {
 		});
 	}
 
-	async function logout() {
-		await axios.post("http://localhost:8000/logout").then(() => {
-			setIsLoggedIn(false);
-			navigate("/login");
-		});
+	async function logout(forced = false) {
+		if (!forced) {
+			await axios.post("http://localhost:8000/logout");
+		}
+		setIsLoggedIn(false);
+		navigate("/login");
 	}
 
 	return { register, errors, loading, logout, isLoggedIn, login };
