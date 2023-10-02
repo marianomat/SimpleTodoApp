@@ -219,7 +219,7 @@ Make sure that both the frontend and backend projects are hosted under the same 
 
 If you would like to contribute to this project, please feel free to submit a pull request.
 
-Please note that all code should be written in English and should follow the PSR-2 coding standard.
+Please note that all code should be written in English.
 
 📝 **License**
 
