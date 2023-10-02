@@ -40,20 +40,29 @@ To get the project up and running, you can choose one of the following methods:
 3. **Run the following Docker Compose command to start the application:**
 
     ```bash
-    docker-compose up
+    docker-compose up -d
     ```
 
 4. **After the containers are up and running, execute the migration command:**
 
     ```bash
-    docker-compose exec backend php artisan migrate --seed
+    docker container exec  simpletodoapp-backend php artisan migrate:fresh --seed
     ```
 
 5. **Running backend tests:**
 
     ```
-    docker-compose exec backend php artisan test
+    docker container exec  simpletodoapp-backend php artisan test
     ```
+
+6. **Try the application!!**
+
+    - Frontend: http://localhost:5173
+
+    _User credentials for testing:_
+
+    email: user@user.com
+    password: password
 
 ### Without Docker Method
 
@@ -139,6 +148,15 @@ To get the project up and running, you can choose one of the following methods:
         ```
         npm run dev
         ```
+
+14. **Try the application!!**
+
+    -   Frontend: http://localhost:5173
+
+    _User credentials for testing:_
+
+    email: user@user.com
+    password: password
 
 ## 💡 About Authentication
 
