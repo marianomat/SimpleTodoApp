@@ -115,27 +115,26 @@ To get the project up and running, you can choose one of the following methods:
     You should have the db running at this point
 
     ```
-    php artisan migrate --seed
+    php artisan migrate:fresh --seed
     ```
 
-9.  **Run the server:**
+9.  **Running backend tests:**
+
+    ```
+    php artisan test
+    ```
+
+10. **Run the server:**
 
     ```
     php artisan serve
     ```
 
-10. **Running backend tests:**
-
-    ```
-    docker-compose exec backend php artisan test
-    ```
-
 11. ### Set up the frontend:
 
-    Navigate to frontend folder SimpleTodoAppReact
+    Open a new console in root folder (SimpleTodoApp) and navigate to frontend folder SimpleTodoAppReact
 
     ```
-    cd ..
     cd SimpleTodoAppReact
     ```
 
