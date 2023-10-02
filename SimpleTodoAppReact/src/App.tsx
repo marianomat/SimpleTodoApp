@@ -10,16 +10,20 @@ import AuthRoutes from "./Components/AuthRoutes";
 import Dashboard from "./Pages/Dashboard";
 
 function App() {
-	const { isLoggedIn, logout } = useAuth();
+	const { isLoggedIn, logout, setIsLoggedIn } = useAuth();
 
 	axios.interceptors.response.use(
 		(response) => response,
 		(error) => {
 			if (!error.response) {
 				// network error
-				logout(true);
+				setIsLoggedIn(false);
+				return Promise.reject(error);
 			}
-			if (error.response?.status === 401 || error.response?.status === 500) logout(true);
+			if (error.response?.status === 401 || error.response?.status === 500) {
+				setIsLoggedIn(false);
+				return Promise.reject(error);
+			}
 			return Promise.reject(error);
 		}
 	);
