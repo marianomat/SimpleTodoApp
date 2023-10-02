@@ -19,6 +19,8 @@ This repository contains a simple To-Do application built using React.js for the
 -   Backend: Laravel 10
 -   Database: Mysql
 
+---
+
 ## 🚀 Getting Started
 
 To get the project up and running, you can choose one of the following methods:
@@ -159,6 +161,8 @@ To get the project up and running, you can choose one of the following methods:
     email: user@user.com
     password: password
 
+---
+
 ## Using Postman for API Testing
 
 You can use [Postman](https://www.postman.com/) to test the API endpoints. I have provided a collection with pre-configured requests to make it easier for you.
@@ -191,6 +195,8 @@ This project utilizes [Scribe](https://github.com/knuckleswtf/scribe) for automa
 
 To access the API documentation, simply visit [http://localhost:8000/docs](http://localhost:8000/docs) after running your Laravel application.
 
+---
+
 ## 💡 About Authentication
 
 This application uses Laravel Sanctum with Single Page Application (SPA) mode and cookies for authentication. This means that both the frontend and backend projects need to be hosted on the same domain for authentication to work correctly.
@@ -206,6 +212,8 @@ Sanctum uses Laravel's built-in cookie based session authentication services. Th
 ### Setting Up the Same Domain
 
 Make sure that both the frontend and backend projects are hosted under the same domain. If you're using Docker, ensure that the containers are configured to use the same domain name. If you're setting up manually, configure your server and environment variables accordingly.
+
+---
 
 🤝 **Contributing**
 
