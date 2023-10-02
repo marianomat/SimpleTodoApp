@@ -49,6 +49,8 @@ To get the project up and running, you can choose one of the following methods:
     docker container exec  simpletodoapp-backend php artisan migrate:fresh --seed
     ```
 
+    Warning: if you get a connection refured, maybe the containers are still not ready, wait a few seconds and try again.
+
 5. **Running backend tests:**
 
     ```
@@ -61,8 +63,8 @@ To get the project up and running, you can choose one of the following methods:
 
     _User credentials for testing:_
 
-    email: user@user.com
-    password: password
+    - email: user@user.com
+    - password: password
 
 ### Without Docker Method
 
