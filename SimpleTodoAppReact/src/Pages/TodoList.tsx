@@ -46,6 +46,20 @@ export default function TodoList() {
 			});
 	};
 
+	const handleCompleteUpdate = (todo: Todo) => {
+		setLoadingTodoChange(todo.id);
+		todo.completed = !todo.completed;
+		updateTodo(todo)
+			.then(() => getTodos().then((res) => setTodos(res)))
+			.catch(() => {
+				toast.error("Error updating Todo");
+			})
+			.finally(() => {
+				toast.success("Todo updated successfully!");
+				setLoadingTodoChange(null);
+			});
+	};
+
 	const handleTodoCreation = (description: string) => {
 		setCreatingTodo(true);
 		createTodo(description)
@@ -84,12 +98,20 @@ export default function TodoList() {
 	};
 
 	const generateTodoItem = (todo: Todo) => {
-		return <TodoItem key={todo.id} todo={todo} handleDestroy={handleDestroy} setTodoBeingUpdated={setTodoBeingUpdated} />;
+		return (
+			<TodoItem
+				key={todo.id}
+				todo={todo}
+				handleDestroy={handleDestroy}
+				setTodoBeingUpdated={setTodoBeingUpdated}
+				handleCompleteUpdate={handleCompleteUpdate}
+			/>
+		);
 	};
 
 	return (
 		<>
-			<div className="flex flex-col mx-auto md:w-1/2 w-full">
+			<div className="flex flex-col mx-auto md:w-1/2 w-full mb-24">
 				<h1 className="heading">My Todos</h1>
 				<div className="flex flex-col gap-2">
 					<Card className="w-full">

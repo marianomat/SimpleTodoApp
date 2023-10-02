@@ -8,12 +8,21 @@ interface TodoItemProps {
 	todo: Todo;
 	handleDestroy: (todo: Todo) => void;
 	setTodoBeingUpdated: (todo: Todo) => void;
+	handleCompleteUpdate: (todo: Todo) => void;
 }
 
-export default function TodoItem({ todo, handleDestroy, setTodoBeingUpdated }: TodoItemProps) {
+export default function TodoItem({ todo, handleDestroy, setTodoBeingUpdated, handleCompleteUpdate }: TodoItemProps) {
 	return (
-		<ListItem key={todo.id} ripple={false} className="py-1 pr-1 pl-4">
-			<Typography variant="lead">{todo.description}</Typography>
+		<ListItem
+			onClick={() => handleCompleteUpdate(todo)}
+			key={todo.id}
+			ripple={false}
+			className={`py-1 pr-1 pl-4 ${todo.completed && "bg-lime-100"}`}
+		>
+			<Typography variant="lead">
+				<span className={todo.completed ? "line-through" : ""}>{todo.description}</span>{" "}
+				{todo.completed && <span className="italic text-gray-500">(Completed)</span>}
+			</Typography>
 			<ListItemSuffix>
 				<Menu>
 					<MenuHandler>

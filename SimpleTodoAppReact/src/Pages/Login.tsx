@@ -6,7 +6,6 @@ import IconSpinner from "../Components/IconSpinner";
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [remember, setRemember] = useState(false);
 	const { login, errors, loading } = useAuth();
 
 	const handleSubmit = async (evt: React.ChangeEvent<HTMLFormElement>) => {
@@ -53,21 +52,6 @@ function Login() {
 						disabled={loading}
 					/>
 					<ValidationError errors={errors} field="password" />
-				</div>
-
-				<div className="flex flex-col gap-2">
-					<label className="flex gap-2 items-center hover:cursor-pointer" htmlFor="remember">
-						<input
-							id="remember"
-							name="remember"
-							type="checkbox"
-							className="w-4 h-4"
-							checked={remember}
-							onChange={() => setRemember((previous) => !previous)}
-							disabled={loading}
-						/>
-						<span className="select-none">Remember me</span>
-					</label>
 				</div>
 
 				<div className="border-t h-[1px] my-6"></div>
