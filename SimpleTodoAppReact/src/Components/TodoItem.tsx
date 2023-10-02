@@ -33,7 +33,8 @@ export default function TodoItem({ todo, handleDestroy, setTodoBeingUpdated, han
 					<MenuList>
 						<MenuItem
 							className="flex gap-2 items-center"
-							onClick={() => {
+							onClick={(e) => {
+								e.stopPropagation();
 								setTodoBeingUpdated(todo);
 							}}
 						>
@@ -41,7 +42,8 @@ export default function TodoItem({ todo, handleDestroy, setTodoBeingUpdated, han
 							Edit
 						</MenuItem>
 						<MenuItem
-							onClick={() => {
+							onClick={(e) => {
+								e.stopPropagation();
 								handleDestroy(todo);
 							}}
 							className="flex gap-2 items-center"
