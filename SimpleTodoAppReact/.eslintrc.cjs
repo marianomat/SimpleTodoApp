@@ -8,4 +8,9 @@ module.exports = {
 	rules: {
 		"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 	},
+	env: {
+		browser: true,
+		amd: true,
+		node: true,
+	},
 };
