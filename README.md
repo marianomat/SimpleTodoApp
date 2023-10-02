@@ -183,9 +183,9 @@ This collection contains requests for various API endpoints, including creating,
 
 5. Send the request to interact with the API.
 
----
-
 **Note:** Make sure your local server is running while testing the API with Postman.
+
+---
 
 ## API Documentation with Scribe
 
