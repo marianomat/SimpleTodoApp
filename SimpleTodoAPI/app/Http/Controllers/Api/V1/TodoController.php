@@ -20,7 +20,7 @@ class TodoController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        # get todos from user order by newest
+        // get todos from user order by newest
         $todos = $user->todos()->latest()->get(['id', 'description', 'completed']);
 
         return TodoResource::collection($todos);

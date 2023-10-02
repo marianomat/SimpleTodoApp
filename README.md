@@ -183,6 +183,14 @@ This collection contains requests for various API endpoints, including creating,
 
 **Note:** Make sure your local server is running while testing the API with Postman.
 
+## API Documentation with Scribe
+
+This project utilizes [Scribe](https://github.com/knuckleswtf/scribe) for automatic API documentation generation in Laravel.
+
+### Accessing Documentation
+
+To access the API documentation, simply visit [http://localhost:8000/docs](http://localhost:8000/docs) after running your Laravel application.
+
 ## 💡 About Authentication
 
 This application uses Laravel Sanctum with Single Page Application (SPA) mode and cookies for authentication. This means that both the frontend and backend projects need to be hosted on the same domain for authentication to work correctly.
