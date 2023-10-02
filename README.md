@@ -1,4 +1,4 @@
-# To-Do App with React.js & Laravel
+# To-Do App with React.js & Laravel 🔥
 
 ## Description
 
