@@ -21,12 +21,13 @@ function App() {
 
 	return (
 		<Routes>
-			<Route path="/" element={<Layout isLoggedIn={isLoggedIn} logout={logout} />}>
+			<Route element={<Layout isLoggedIn={isLoggedIn} logout={logout} />}>
 				<Route path="login" element={<Login />} />
 				<Route path="register" element={<Register />} />
 				<Route element={<AuthRoutes isLoggedIn={isLoggedIn} />}>
 					<Route path="todos" element={<TodoList />} />
 				</Route>
+				<Route path="*" element={<h1>Not Found</h1>} />
 			</Route>
 		</Routes>
 	);
