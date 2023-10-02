@@ -23,7 +23,19 @@ export async function updateTodo(todo: Todo): Promise<Todo> {
 			completed: todo.completed,
 		})
 		.then((response) => {
-			console.log(response.data.data);
+			return response.data.data;
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+}
+
+export async function createTodo(description: string): Promise<Todo> {
+	return axios
+		.post("http://localhost:8000/api/v1/todos", {
+			description: description,
+		})
+		.then((response) => {
 			return response.data.data;
 		})
 		.catch((error) => {

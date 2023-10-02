@@ -8,7 +8,7 @@ import { useState } from "react";
 interface UpdateTodoItemProps {
 	todo: Todo;
 	handleDescriptionUpdate: (todo: Todo) => void;
-	setTodoBeingUpdated: (todo: Todo) => void;
+	setTodoBeingUpdated: (todo: Todo | null) => void;
 }
 
 export default function UpdateTodoItem({ todo, handleDescriptionUpdate, setTodoBeingUpdated }: UpdateTodoItemProps) {
@@ -32,7 +32,7 @@ export default function UpdateTodoItem({ todo, handleDescriptionUpdate, setTodoB
 
 	return (
 		<ListItem key={todo.id} ripple={false} className="py-1 pr-1 pl-4">
-			<Input variant="standard" autoFocus size="lg" label="Change Description" value={description} onChange={handleChange} />
+			<Input crossOrigin="" variant="standard" autoFocus size="lg" label="Change Description" value={description} onChange={handleChange} />
 			<ListItemSuffix className="flex">
 				<IconButton variant="text" onClick={handleUpdate}>
 					<AcceptIcon />

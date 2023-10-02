@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Todo } from "../types";
-import { destroyTodo, getTodos, updateTodo } from "../Services/TodoService";
+import { createTodo, destroyTodo, getTodos, updateTodo } from "../Services/TodoService";
 import { Card, List } from "@material-tailwind/react";
 import TodoItem from "../Components/TodoItem";
 import UpdateTodoItem from "../Components/UpdateTodoItem";
 import LoadingItem from "../Components/LoadingItem";
+import CreateTodo from "../Components/CreateTodo";
+import toast from "react-hot-toast";
 
 export default function TodoList() {
 	const [todos, setTodos] = useState<Todo[]>([]);
 	const [todoBeingUpdated, setTodoBeingUpdated] = useState<Todo | null>(null);
 	const [loadingTodoChange, setLoadingTodoChange] = useState<number | null>();
+	const [creatingTodo, setCreatingTodo] = useState<boolean>(false);
 
 	useEffect(() => {
 		getTodos().then((res) => setTodos(res));
@@ -20,7 +23,13 @@ export default function TodoList() {
 		destroyTodo(todo);
 		getTodos()
 			.then((res) => setTodos(res))
-			.finally(() => setLoadingTodoChange(null));
+			.catch(() => {
+				toast.error("Error deleting Todo");
+			})
+			.finally(() => {
+				toast.success("Todo deleted successfully!");
+				setLoadingTodoChange(null);
+			});
 	};
 
 	const handleDescriptionUpdate = (todo: Todo) => {
@@ -28,7 +37,26 @@ export default function TodoList() {
 		setTodoBeingUpdated(null);
 		updateTodo(todo)
 			.then(() => getTodos().then((res) => setTodos(res)))
-			.finally(() => setLoadingTodoChange(null));
+			.catch(() => {
+				toast.error("Error updating Todo");
+			})
+			.finally(() => {
+				toast.success("Todo updated successfully!");
+				setLoadingTodoChange(null);
+			});
+	};
+
+	const handleTodoCreation = (description: string) => {
+		setCreatingTodo(true);
+		createTodo(description)
+			.then(() => getTodos().then((res) => setTodos(res)))
+			.catch(() => {
+				toast.error("Error creating Todo");
+			})
+			.finally(() => {
+				toast.success("Todo created successfully!");
+				setCreatingTodo(false);
+			});
 	};
 
 	const generateTodoList = () => {
@@ -62,9 +90,11 @@ export default function TodoList() {
 	return (
 		<>
 			<div className="flex flex-col mx-auto md:w-1/2 w-full">
-				<h1 className="heading">Todos</h1>
+				<h1 className="heading">My Todos</h1>
 				<div className="flex flex-col gap-2">
 					<Card className="w-full">
+						<CreateTodo handleTodoCreation={handleTodoCreation} creatingTodo={creatingTodo} />
+						<h2 className="heading mt-8">List of Todos</h2>
 						<List>{generateTodoList()}</List>
 					</Card>
 				</div>

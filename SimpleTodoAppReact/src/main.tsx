@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 import { ThemeProvider } from "@material-tailwind/react";
+import { Toaster } from "react-hot-toast";
 
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.withCredentials = true;
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 		<ThemeProvider>
 			<BrowserRouter>
 				<App />
+				<Toaster />
 			</BrowserRouter>
 		</ThemeProvider>
 	</React.StrictMode>
